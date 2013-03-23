@@ -7,6 +7,7 @@ define(['backbone', 'view/topView'], function (Backbone, TopView) {
 
         routes: {
             '': 'topView',
+            'login': 'loginView',
             ':uid': 'userView',
             'p/:pid': 'problemView'
         },
@@ -21,6 +22,12 @@ define(['backbone', 'view/topView'], function (Backbone, TopView) {
             console.log('topView');
 
             new TopView(this.model);
+        },
+
+        loginView: function () {
+            console.log('loginView');
+
+            // new LoginView(this.model);
         },
 
         userView: function (uid) {

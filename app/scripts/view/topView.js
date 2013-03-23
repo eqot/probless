@@ -16,12 +16,10 @@ define(['jquery', 'backbone', 'underscore', 'text!template/topView.html'], funct
         },
 
         render: function () {
-            var view = this.template({model: this.model});
+            var view = this.template({problems: this.model});
 
             $(this.el).append(view);
         }
-
-
     });
 
     return topView;
