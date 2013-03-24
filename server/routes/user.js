@@ -1,7 +1,8 @@
 
-var utils = require('connect').utils;
+var models = require('../models'),
+    User = models.UserModel;
 
-exports.create = function (req, res) {
+exports.signup = function (req, res, next) {
     var nickname = req.param('nickname');
     var email = req.param('email');
     var password = req.param('password');
@@ -9,7 +10,38 @@ exports.create = function (req, res) {
 
     console.log(nickname + ', ' + email + ', ' + password + ', ' + password2);
 
-    res.send("create: " + nickname);
+    var user = User({
+        nickname: nickname,
+    });
+    user.setPassword(password, password2);
+    if (email) {
+        user.email = email;
+    }
+
+    user.save(function (err, result) {
+        if (err) {
+            if (err.code === 11000) {
+                res.send('Used nickname');
+            }
+
+            if (err.name === 'ValidationError') {
+                if (err.errors.password_mismatch) {
+                    res.send('Password mismatch');
+                } else {
+                    res.send('Another error');
+                }
+            }
+
+            return next(err);
+        }
+
+        console.log(result);
+
+        req.session.nickname = result.nickname;
+
+        res.send('signed up');
+        return;
+    });
 };
 
 exports.signin = function (req, res) {
@@ -18,9 +50,27 @@ exports.signin = function (req, res) {
 
     console.log(nickname + ', ' + password);
 
-    res.send("sign in: " + nickname);
-};
+    var condition = {
+        nickname: nickname,
+        password: password
+    };
+    User.findOne(condition, function (err, result) {
+        if (err) {
+            res.send('error');
+            return;
+        }
+        if (!result) {
+            res.send('result error');
+            return;
+        }
 
-function getAuthCookie() {
-    return utils.uid(32);
-}
+        console.log(result);
+
+        req.session.nickname = result.nickname;
+        // console.log('!!!');
+        // console.log(req.session);
+
+        res.send('signed in');
+        return;
+    });
+};
