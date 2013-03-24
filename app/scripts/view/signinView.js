@@ -1,13 +1,13 @@
 /*global define */
-define(['jquery', 'backbone', 'underscore', 'text!template/loginView.html'], function ($, Backbone, _, LoginViewTemplate) {
+define(['jquery', 'backbone', 'underscore', 'text!template/signinView.html'], function ($, Backbone, _, SigninViewTemplate) {
     'use strict';
 
-    var loginView = Backbone.View.extend({
+    var signinView = Backbone.View.extend({
         model: null,
 
         el: $('#view'),
 
-        template: _.template(LoginViewTemplate),
+        template: _.template(SigninViewTemplate),
 
         initialize: function (model) {
             this.model = model;
@@ -20,10 +20,10 @@ define(['jquery', 'backbone', 'underscore', 'text!template/loginView.html'], fun
 
             $(this.el).html(view);
 
-            $('#login').click(function (event) {
+            $('#signin').click(function (event) {
                 event.preventDefault();
 
-                console.log('login');
+                console.log('signin');
                 var nickname = $('#nickname').val();
                 var email = $('#email').val();
                 var password = $('#password').val();
@@ -32,5 +32,5 @@ define(['jquery', 'backbone', 'underscore', 'text!template/loginView.html'], fun
         }
     });
 
-    return loginView;
+    return signinView;
 });

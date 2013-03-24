@@ -1,5 +1,5 @@
 /*global define */
-define(['backbone', 'view/topView', 'view/loginView'], function (Backbone, TopView, LoginView) {
+define(['jquery', 'backbone', 'view/topView', 'view/signinView'], function ($, Backbone, TopView, SigninView) {
     'use strict';
 
     var ProblemRouter = Backbone.Router.extend({
@@ -9,13 +9,20 @@ define(['backbone', 'view/topView', 'view/loginView'], function (Backbone, TopVi
 
         routes: {
             '': 'topView',
-            'login': 'loginView',
+            'signin': 'signinView',
             ':uid': 'userView',
             'p/:pid': 'problemView'
         },
 
         initialize: function (model) {
             this.model = model;
+
+            $('#signin-at-corner').click(function (event) {
+                event.preventDefault();
+
+                console.log('signin');
+                Backbone.history.navigate('signin', true);
+            });
 
             Backbone.history.start();
         },
@@ -26,10 +33,10 @@ define(['backbone', 'view/topView', 'view/loginView'], function (Backbone, TopVi
             new TopView(this.model);
         },
 
-        loginView: function () {
-            console.log('loginView');
+        signinView: function () {
+            console.log('signinView');
 
-            new LoginView(this.model);
+            new SigninView(this.model);
         },
 
         userView: function (uid) {

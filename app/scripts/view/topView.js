@@ -19,13 +19,6 @@ define(['jquery', 'backbone', 'underscore', 'text!template/topView.html'], funct
             var view = this.template({problems: this.model});
 
             $(this.el).html(view);
-
-            $('#login').click(function (event) {
-                event.preventDefault();
-
-                console.log('login');
-                Backbone.history.navigate('login', true);
-            });
         }
     });
 
