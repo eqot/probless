@@ -1,13 +1,13 @@
 /*global define */
-define(['jquery', 'backbone', 'underscore', 'text!template/topView.html'], function ($, Backbone, _, TopViewTemplate) {
+define(['jquery', 'backbone', 'underscore', 'text!template/loginView.html'], function ($, Backbone, _, LoginViewTemplate) {
     'use strict';
 
-    var topView = Backbone.View.extend({
+    var loginView = Backbone.View.extend({
         model: null,
 
         el: $('#view'),
 
-        template: _.template(TopViewTemplate),
+        template: _.template(LoginViewTemplate),
 
         initialize: function (model) {
             this.model = model;
@@ -24,10 +24,13 @@ define(['jquery', 'backbone', 'underscore', 'text!template/topView.html'], funct
                 event.preventDefault();
 
                 console.log('login');
-                Backbone.history.navigate('login', true);
+                var nickname = $('#nickname').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                console.log(nickname + ', ' + email + ', ' + password);
             });
         }
     });
 
-    return topView;
+    return loginView;
 });

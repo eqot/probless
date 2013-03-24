@@ -1,9 +1,11 @@
 /*global define */
-define(['backbone', 'view/topView'], function (Backbone, TopView) {
+define(['backbone', 'view/topView', 'view/loginView'], function (Backbone, TopView, LoginView) {
     'use strict';
 
     var ProblemRouter = Backbone.Router.extend({
         model: null,
+
+        view: null,
 
         routes: {
             '': 'topView',
@@ -27,7 +29,7 @@ define(['backbone', 'view/topView'], function (Backbone, TopView) {
         loginView: function () {
             console.log('loginView');
 
-            // new LoginView(this.model);
+            new LoginView(this.model);
         },
 
         userView: function (uid) {
