@@ -1,37 +1,88 @@
-<h2 class="text-center">Sign in</h2>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span1"></div>
 
-<div id="signin-view" class="container">
-    <form class="form-horizontal span6 offset2">
-        <div class="control-group">
-            <div class="controls">
-                <span class="text-error">* required</span>
-            </div>
+        <div id="signup-view" class="group span5">
+            <h2 class="text-center">Sign up for newbies</h2>
+
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <div class="controls">
+                        <span class="text-error">* required</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputNickname">Nickname</label>
+                    <div class="controls">
+                        <input type="text" id="up-nickname" placeholder="Nickname">
+                        <span class="text-error">*</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputEmail">Email</label>
+                    <div class="controls">
+                        <input type="text" id="up-email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword">Password</label>
+                    <div class="controls">
+                        <input type="password" id="up-password" placeholder="Password">
+                        <span class="text-error">*</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword">Password again</label>
+                    <div class="controls">
+                        <input type="password" id="up-password2" placeholder="Password">
+                        <span class="text-error">*</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <label class="checkbox">
+                            <input id="up-remember" type="checkbox"> Remember me
+                        </label>
+                        <button id="signup" type="submit" class="btn">Sign up</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="inputNickname">Nickname</label>
-            <div class="controls">
-                <input type="text" id="nickname" placeholder="Nickname"> <span class="text-error">*</span>
-            </div>
+
+        <div id="signin-view" class="group span5">
+            <h2 class="text-center">Sign in</h2>
+
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <div class="controls">
+                        <span class="text-error">* required</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputNickname">Nickname</label>
+                    <div class="controls">
+                        <input type="text" id="in-nickname" placeholder="Nickname">
+                        <span class="text-error">*</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword">Password</label>
+                    <div class="controls">
+                        <input type="password" id="in-password" placeholder="Password">
+                        <span class="text-error">*</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <label class="checkbox">
+                            <input id="id-remember" type="checkbox"> Remember me
+                        </label>
+                        <button id="signin" type="submit" class="btn">Sign in</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="inputEmail">Email</label>
-            <div class="controls">
-                <input type="text" id="email" placeholder="Email">
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label" for="inputPassword">Password</label>
-            <div class="controls">
-                <input type="password" id="password" placeholder="Password"> <span class="text-error">*</span>
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <label class="checkbox">
-                    <input id="remember" type="checkbox"> Remember me
-                </label>
-                <button id="signin" type="submit" class="btn">Sign in</button>
-            </div>
-        </div>
-    </form>
+
+        <div class="span1"></div>
+    </div>
 </div>
