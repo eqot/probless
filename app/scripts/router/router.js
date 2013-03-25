@@ -1,5 +1,11 @@
 /*global define */
-define(['jquery', 'backbone', 'view/topView', 'view/signinView'], function ($, Backbone, TopView, SigninView) {
+define([
+    'jquery',
+    'backbone',
+    'view/topView',
+    'view/signinView',
+    'view/problemView'
+], function ($, Backbone, TopView, SigninView, ProblemView) {
     'use strict';
 
     var ProblemRouter = Backbone.Router.extend({
@@ -10,8 +16,9 @@ define(['jquery', 'backbone', 'view/topView', 'view/signinView'], function ($, B
         routes: {
             '': 'topView',
             'signin': 'signinView',
-            ':uid': 'userView',
-            'p/:pid': 'problemView'
+            'problem': 'problemView',
+            'problem/:pid': 'problemView',
+            ':uid': 'userView'
         },
 
         initialize: function (model) {
@@ -49,6 +56,10 @@ define(['jquery', 'backbone', 'view/topView', 'view/signinView'], function ($, B
 
         problemView: function (pid) {
             console.log('problemView: ' + pid);
+
+            this.update();
+
+            this.view = new ProblemView(this.model);
         },
 
         update: function () {
