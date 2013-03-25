@@ -36,7 +36,7 @@ define(['jquery', 'backbone', 'view/topView', 'view/signinView'], function ($, B
         signinView: function () {
             console.log('signinView');
 
-            new SigninView(this.model);
+            new SigninView();
         },
 
         userView: function (uid) {

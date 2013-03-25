@@ -9,8 +9,6 @@ define([
     'use strict';
 
     var signinView = Backbone.View.extend({
-        model: null,
-
         el: $('#view'),
 
         viewTemplate: _.template(SigninViewTemplate),
@@ -21,16 +19,14 @@ define([
             'click #signin': 'signin'
         },
 
-        initialize: function (model) {
+        initialize: function () {
             _.bindAll(this, 'onSignUp', 'onSignIn');
-
-            this.model = model;
 
             this.render();
         },
 
         render: function () {
-            var view = this.viewTemplate({problems: this.model});
+            var view = this.viewTemplate();
 
             $(this.el).html(view);
         },
@@ -38,47 +34,18 @@ define([
         signup: function (event) {
             event.preventDefault();
 
-            console.log('sign up');
+            // console.log('sign up');
             var nickname = $('#up-nickname').val();
             var email = $('#up-email').val();
             var password = $('#up-password').val();
             var password2 = $('#up-password2').val();
-            console.log(nickname + ', ' + email + ', ' + password + ', ' + password2);
+            // console.log(nickname + ', ' + email + ', ' + password + ', ' + password2);
 
-            var alert;
-            if (!nickname) {
-                alert = this.alertTemplate({message: 'Nickname is required'});
-                $('#up-alert').empty().append(alert);
-
-                $('#up-nickname').focus();
-
-                return;
-            }
-
-            if (!password) {
-                alert = this.alertTemplate({message: 'Password is required.'});
-                $('#up-alert').empty().append(alert);
-
-                $('#up-password').focus();
-
-                return;
-            }
-
-            if (!password2) {
-                alert = this.alertTemplate({message: 'Password is required.'});
-                $('#up-alert').empty().append(alert);
-
-                $('#up-password2').focus();
-
-                return;
-            }
-
-            if (password !== password2) {
-                alert = this.alertTemplate({message: 'Password is not matched.'});
-                $('#up-alert').empty().append(alert);
-
-                $('#up-password').focus();
-
+            if (this.check(nickname,  '#up-alert', 'Nickname is required.', '#up-nickname') &&
+                this.check(password,  '#up-alert', 'Password is required.', '#up-password') &&
+                this.check(password2, '#up-alert', 'Password is required.', '#up-password2') &&
+                this.check(password === password2, '#up-alert', 'Password is not matched.', '#up-password')) {
+            } else {
                 return;
             }
 
@@ -95,35 +62,21 @@ define([
             if (res === 'signed up') {
                 Backbone.history.navigate('', true);
             } else {
-                var alert = this.alertTemplate({message: 'Nickname or password is not matched.'});
-                $('#up-alert').empty().append(alert);
+                this.check(false, '#up-alert', 'Nickname or password is not matched.', '#up-nickname');
             }
         },
 
         signin: function (event) {
             event.preventDefault();
 
-            console.log('sign in');
+            // console.log('sign in');
             var nickname = $('#in-nickname').val();
             var password = $('#in-password').val();
-            console.log(nickname + ', ' + password);
+            // console.log(nickname + ', ' + password);
 
-            var alert;
-            if (!nickname) {
-                alert = this.alertTemplate({message: 'Nickname is required.'});
-                $('#in-alert').empty().append(alert);
-
-                $('#in-nickname').focus();
-
-                return;
-            }
-
-            if (!password) {
-                alert = this.alertTemplate({message: 'Password is required.'});
-                $('#in-alert').empty().append(alert);
-
-                $('#in-password').focus();
-
+            if (this.check(nickname, '#in-alert', 'Nickname is required.', '#in-nickname') &&
+                this.check(password, '#in-alert', 'Password is required.', '#in-password')) {
+            } else {
                 return;
             }
 
@@ -139,10 +92,22 @@ define([
             if (res === 'signed in') {
                 Backbone.history.navigate('', true);
             } else {
-                var alert = this.alertTemplate({message: 'Nickname or password is not matched.'});
-                $('#in-alert').empty().append(alert);
+                this.check(false, '#in-alert', 'Nickname or password is not matched.', '#in-nickname');
             }
-        }
+        },
+
+        check: function (condition, alertElement, alertMessage, focusedElement) {
+            if (!condition) {
+                var alert = this.alertTemplate({message: alertMessage});
+                $(alertElement).empty().append(alert);
+
+                if (focusedElement) {
+                    $(focusedElement).focus();
+                }
+            }
+
+            return condition;
+        },
     });
 
     return signinView;
