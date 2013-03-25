@@ -50,8 +50,8 @@ define([
             var nickname = sessionStorage.getItem('nickname');
             // console.log(remember + ', ' + nickname);
             if (remember === 'true' && nickname) {
-                $("#up-nickname").val(nickname);
-                $("#in-nickname").val(nickname);
+                $('#up-nickname').val(nickname);
+                $('#in-nickname').val(nickname);
             }
         },
 

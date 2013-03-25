@@ -1,5 +1,10 @@
 /*global define */
-define(['jquery', 'backbone', 'underscore', 'text!template/topView.html'], function ($, Backbone, _, TopViewTemplate) {
+define([
+    'jquery',
+    'backbone',
+    'underscore',
+    'text!template/topView.html'
+], function ($, Backbone, _, TopViewTemplate) {
     'use strict';
 
     var topView = Backbone.View.extend({
