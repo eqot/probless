@@ -22,7 +22,7 @@ define([
         },
 
         initialize: function (model) {
-            _.bindAll(this, 'onSignIn');
+            _.bindAll(this, 'onSignUp', 'onSignIn');
 
             this.model = model;
 
@@ -85,13 +85,19 @@ define([
             var data = {
                 nickname: nickname,
                 email: email,
-                password: password,
-                password2: password2
+                password: password
             };
 
-            $.post('/user', data, function (res) {
-                console.log(res);
-            });
+            $.post('/user', data, this.onSignUp);
+        },
+
+        onSignUp: function (res) {
+            if (res === 'signed up') {
+                Backbone.history.navigate('', true);
+            } else {
+                var alert = this.alertTemplate({message: 'Nickname or password is not matched.'});
+                $('#up-alert').empty().append(alert);
+            }
         },
 
         signin: function (event) {
@@ -135,7 +141,6 @@ define([
             } else {
                 var alert = this.alertTemplate({message: 'Nickname or password is not matched.'});
                 $('#in-alert').empty().append(alert);
-                console.log('error');
             }
         }
     });

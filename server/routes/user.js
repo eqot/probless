@@ -6,14 +6,13 @@ exports.signup = function (req, res, next) {
     var nickname = req.param('nickname');
     var email = req.param('email');
     var password = req.param('password');
-    var password2 = req.param('password2');
 
-    console.log(nickname + ', ' + email + ', ' + password + ', ' + password2);
+    console.log(nickname + ', ' + email + ', ' + password);
 
     var user = User({
         nickname: nickname,
+        password: password
     });
-    user.setPassword(password, password2);
     if (email) {
         user.email = email;
     }
@@ -25,11 +24,7 @@ exports.signup = function (req, res, next) {
             }
 
             if (err.name === 'ValidationError') {
-                if (err.errors.password_mismatch) {
-                    res.send('Password mismatch');
-                } else {
-                    res.send('Another error');
-                }
+                res.send('ValidationError');
             }
 
             return next(err);
