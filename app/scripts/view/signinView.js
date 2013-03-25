@@ -39,6 +39,13 @@ define([
             var view = this.viewTemplate();
 
             $(this.el).html(view);
+
+            // Add a nickname which has been registered
+            var nickname = sessionStorage.getItem('nickname');
+            if (nickname) {
+                $("#up-nickname").val(nickname);
+                $("#in-nickname").val(nickname);
+            }
         },
 
         signup: function (event) {
