@@ -14,6 +14,8 @@ define([
         viewTemplate: _.template(SigninViewTemplate),
         alertTemplate: _.template(AlertTemplate),
 
+        nickname: null,
+
         events: {
             'click #signup': 'signup',
             'click #signin': 'signin'
@@ -21,6 +23,14 @@ define([
 
         initialize: function () {
             _.bindAll(this, 'onSignUp', 'onSignIn');
+
+            if (sessionStorage.getItem('signin')) {
+                // If already signed in, then sign out and go back to home
+                sessionStorage.removeItem('signin');
+
+                Backbone.history.navigate('', true);
+                return;
+            }
 
             this.render();
         },
@@ -49,6 +59,8 @@ define([
                 return;
             }
 
+            this.nickname = nickname;
+
             var data = {
                 nickname: nickname,
                 email: email,
@@ -60,6 +72,10 @@ define([
 
         onSignUp: function (res) {
             if (res === 'signed up') {
+                sessionStorage.setItem('signin', true);
+                sessionStorage.setItem('nickname', this.nickname);
+                // console.log(sessionStorage);
+
                 Backbone.history.navigate('', true);
             } else {
                 this.check(false, '#up-alert', 'Nickname or password is not matched.', '#up-nickname');
@@ -80,6 +96,8 @@ define([
                 return;
             }
 
+            this.nickname = nickname;
+
             var data = {
                 nickname: nickname,
                 password: password
@@ -90,6 +108,10 @@ define([
 
         onSignIn: function (res) {
             if (res === 'signed in') {
+                sessionStorage.setItem('signin', true);
+                sessionStorage.setItem('nickname', this.nickname);
+                // console.log(sessionStorage);
+
                 Backbone.history.navigate('', true);
             } else {
                 this.check(false, '#in-alert', 'Nickname or password is not matched.', '#in-nickname');
@@ -107,7 +129,7 @@ define([
             }
 
             return condition;
-        },
+        }
     });
 
     return signinView;

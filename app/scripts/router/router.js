@@ -30,11 +30,15 @@ define(['jquery', 'backbone', 'view/topView', 'view/signinView'], function ($, B
         topView: function () {
             console.log('topView');
 
+            this.updateSignInfo();
+
             new TopView(this.model);
         },
 
         signinView: function () {
             console.log('signinView');
+
+            this.updateSignInfo();
 
             new SigninView();
         },
@@ -45,7 +49,17 @@ define(['jquery', 'backbone', 'view/topView', 'view/signinView'], function ($, B
 
         problemView: function (pid) {
             console.log('problemView: ' + pid);
+        },
+
+        updateSignInfo: function () {
+            var signin = sessionStorage.getItem('signin');
+            var nickname = sessionStorage.getItem('nickname');
+            // console.log(signin + ', ' + nickname);
+
+            $('#signin-at-corner').text(signin ? 'Sign out' : 'Sign in');
+            $('#nickname').text(signin && nickname ? nickname : '');
         }
+
     });
 
     return ProblemRouter;
