@@ -30,17 +30,17 @@ define(['jquery', 'backbone', 'view/topView', 'view/signinView'], function ($, B
         topView: function () {
             console.log('topView');
 
-            this.updateSignInfo();
+            this.update();
 
-            new TopView(this.model);
+            this.view = new TopView(this.model);
         },
 
         signinView: function () {
             console.log('signinView');
 
-            this.updateSignInfo();
+            this.update();
 
-            new SigninView();
+            this.view = new SigninView();
         },
 
         userView: function (uid) {
@@ -51,13 +51,19 @@ define(['jquery', 'backbone', 'view/topView', 'view/signinView'], function ($, B
             console.log('problemView: ' + pid);
         },
 
-        updateSignInfo: function () {
+        update: function () {
             var signin = sessionStorage.getItem('signin');
             var nickname = sessionStorage.getItem('nickname');
             // console.log(signin + ', ' + nickname);
 
             $('#signin-at-corner').text(signin ? 'Sign out' : 'Sign in');
             $('#nickname').text(signin && nickname ? nickname : '');
+
+            if (this.view) {
+                this.view.destroy();
+            }
+
+            $('#view').empty();
         }
 
     });

@@ -35,6 +35,11 @@ define([
             this.render();
         },
 
+        destroy: function () {
+            $(this.el).undelegate('#signup', 'click');
+            $(this.el).undelegate('#signin', 'click');
+        },
+
         render: function () {
             var view = this.viewTemplate();
 
@@ -43,7 +48,8 @@ define([
             // Add a nickname which has been registered
             var remember = sessionStorage.getItem('remember');
             var nickname = sessionStorage.getItem('nickname');
-            if (remember && nickname) {
+            // console.log(remember + ', ' + nickname);
+            if (remember === 'true' && nickname) {
                 $("#up-nickname").val(nickname);
                 $("#in-nickname").val(nickname);
             }
@@ -82,7 +88,7 @@ define([
             if (res === 'signed up') {
                 sessionStorage.setItem('signin', true);
                 sessionStorage.setItem('nickname', this.nickname);
-                sessionStorage.setItem('rememeber', $('#up-remember')[0].checked);
+                sessionStorage.setItem('remember', $('#up-remember')[0].checked);
                 // console.log(sessionStorage);
 
                 Backbone.history.navigate('', true);
@@ -119,7 +125,7 @@ define([
             if (res === 'signed in') {
                 sessionStorage.setItem('signin', true);
                 sessionStorage.setItem('nickname', this.nickname);
-                sessionStorage.setItem('rememeber', $('#in-remember')[0].checked);
+                sessionStorage.setItem('remember', $('#in-remember')[0].checked);
                 // console.log(sessionStorage);
 
                 Backbone.history.navigate('', true);
