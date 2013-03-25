@@ -41,8 +41,9 @@ define([
             $(this.el).html(view);
 
             // Add a nickname which has been registered
+            var remember = sessionStorage.getItem('remember');
             var nickname = sessionStorage.getItem('nickname');
-            if (nickname) {
+            if (remember && nickname) {
                 $("#up-nickname").val(nickname);
                 $("#in-nickname").val(nickname);
             }
@@ -81,6 +82,7 @@ define([
             if (res === 'signed up') {
                 sessionStorage.setItem('signin', true);
                 sessionStorage.setItem('nickname', this.nickname);
+                sessionStorage.setItem('rememeber', $('#up-remember')[0].checked);
                 // console.log(sessionStorage);
 
                 Backbone.history.navigate('', true);
@@ -117,6 +119,7 @@ define([
             if (res === 'signed in') {
                 sessionStorage.setItem('signin', true);
                 sessionStorage.setItem('nickname', this.nickname);
+                sessionStorage.setItem('rememeber', $('#in-remember')[0].checked);
                 // console.log(sessionStorage);
 
                 Backbone.history.navigate('', true);
