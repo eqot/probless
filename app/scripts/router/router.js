@@ -4,8 +4,9 @@ define([
     'backbone',
     'view/topView',
     'view/signinView',
+    'view/submitView',
     'view/problemView'
-], function ($, Backbone, TopView, SigninView, ProblemView) {
+], function ($, Backbone, TopView, SigninView, SubmitView, ProblemView) {
     'use strict';
 
     var ProblemRouter = Backbone.Router.extend({
@@ -16,7 +17,7 @@ define([
         routes: {
             '': 'topView',
             'signin': 'signinView',
-            'problem': 'problemView',
+            'problem': 'submitView',
             'problem/:pid': 'problemView',
             ':uid': 'userView'
         },
@@ -52,6 +53,14 @@ define([
 
         userView: function (uid) {
             console.log('userView: ' + uid);
+        },
+
+        submitView: function () {
+            console.log('submitView');
+
+            this.update();
+
+            this.view = new SubmitView(this.model);
         },
 
         problemView: function (pid) {
