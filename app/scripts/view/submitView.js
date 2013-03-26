@@ -14,17 +14,27 @@ define([
 
         template: _.template(SubmitViewTemplate),
 
+        events: {
+            'click #submit': 'submit'
+        },
+
         initialize: function (model) {
             this.model = model;
 
             this.render();
         },
 
-        destroy: function () {},
+        destroy: function () {
+            $(this.el).undelegate('#submit', 'click');
+        },
 
         render: function () {
             var view = this.template({problems: this.model});
             $(this.el).html(view);
+        },
+
+        submit: function () {
+            console.log('submit');
         }
     });
 
