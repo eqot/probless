@@ -19,6 +19,8 @@ define([
         },
 
         initialize: function (model) {
+            _.bindAll(this, 'onSubmit');
+
             this.model = model;
 
             this.render();
@@ -35,6 +37,25 @@ define([
 
         submit: function () {
             console.log('submit');
+
+            var title = $('#title').val();
+            var description = $('#description').val();
+            var tags = null;
+            var nickname = $('#nickname-visible')[0].selectedIndex === 1;
+
+            var data = {
+                title: title,
+                description: description,
+                tags: tags,
+                nickname: nickname ? sessionStorage.getItem('nickname') : ''
+            };
+            console.log(data);
+
+            $.post('problem', data, this.onSubmit);
+        },
+
+        onSubmit: function () {
+            console.log('onSubmit');
         }
     });
 
