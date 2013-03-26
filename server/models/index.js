@@ -30,4 +30,13 @@ function getAuthCookie() {
     return utils.uid(32);
 }
 
+var ProblemSchema = new Schema({
+    title: {type: String, required: true},
+    description: {type: String},
+    tags: {type: String},
+    nickname: {type: String},
+    created_at: {type: Date, default: Date.now}
+});
+
 exports.UserModel = mongoose.model('User', UserSchema);
+exports.ProblemModel = mongoose.model('Problem', ProblemSchema);

@@ -1,4 +1,7 @@
 
+var models = require('../models'),
+    Problem = models.ProblemModel;
+
 exports.submit = function (req, res, next) {
     console.log('Submit problem');
 
@@ -8,5 +11,29 @@ exports.submit = function (req, res, next) {
     var nickname = req.param('nickname');
     console.log(title + ', ' + description + ', ' + tags + ', ' + nickname);
 
-    res.send('Submit problem');
+    var problem = new Problem({
+        title: title,
+        description: description,
+        tags: tags,
+        nickname: nickname
+    });
+
+    problem.save(function (err, result) {
+        if (err) {
+            if (err.code === 11000) {
+                res.send('Error 11000');
+            }
+
+            if (err.name === 'ValidationError') {
+                res.send('ValidationError');
+            }
+
+            return next(err);
+        }
+
+        console.log(result);
+
+        res.send('submitted');
+        return;
+    });
 };
