@@ -24,7 +24,9 @@ define([
             this.render();
         },
 
-        destroy: function () {},
+        destroy: function () {
+            $(this.el).undelegate('#submit', 'click');
+        },
 
         render: function () {
             var view = this.template({problems: this.model});
