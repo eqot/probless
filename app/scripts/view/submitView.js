@@ -61,8 +61,13 @@ define([
             $.post('problem', data, this.onSubmit);
         },
 
-        onSubmit: function () {
+        onSubmit: function (result) {
             console.log('onSubmit');
+            console.log(result);
+
+            if (result) {
+                Backbone.history.navigate('problem/' + result, true);
+            }
         },
 
         check: function (condition, alertElement, alertMessage, focusedElement) {

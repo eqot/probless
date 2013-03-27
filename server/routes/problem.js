@@ -33,7 +33,7 @@ exports.submit = function (req, res, next) {
 
         console.log(result);
 
-        res.send('submitted');
+        res.send(result._id);
         return;
     });
 };
