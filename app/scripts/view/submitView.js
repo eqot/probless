@@ -3,8 +3,9 @@ define([
     'jquery',
     'backbone',
     'underscore',
-    'text!template/submitView.html'
-], function ($, Backbone, _, SubmitViewTemplate) {
+    'text!template/submitView.html',
+    'text!template/alert.html'
+], function ($, Backbone, _, SubmitViewTemplate, AlertTemplate) {
     'use strict';
 
     var submitView = Backbone.View.extend({
@@ -12,7 +13,8 @@ define([
 
         el: $('#view'),
 
-        template: _.template(SubmitViewTemplate),
+        viewTemplate: _.template(SubmitViewTemplate),
+        alertTemplate: _.template(AlertTemplate),
 
         events: {
             'click #submit': 'submit'
@@ -31,17 +33,22 @@ define([
         },
 
         render: function () {
-            var view = this.template({problems: this.model});
+            var view = this.viewTemplate({problems: this.model});
             $(this.el).html(view);
         },
 
         submit: function () {
-            console.log('submit');
+            // console.log('submit');
 
             var title = $('#title').val();
             var description = $('#description').val();
             var tags = null;
             var nickname = $('#nickname-visible')[0].selectedIndex === 1;
+
+            if (this.check(title && title !== '', '#submit-alert', 'Title is required.', '#title')) {
+            } else {
+                return;
+            }
 
             var data = {
                 title: title,
@@ -56,6 +63,19 @@ define([
 
         onSubmit: function () {
             console.log('onSubmit');
+        },
+
+        check: function (condition, alertElement, alertMessage, focusedElement) {
+            if (!condition) {
+                var alert = this.alertTemplate({message: alertMessage});
+                $(alertElement).empty().append(alert);
+
+                if (focusedElement) {
+                    $(focusedElement).focus();
+                }
+            }
+
+            return condition;
         }
     });
 

@@ -1,8 +1,20 @@
 <br>
+<div class="container">
 <div class="row">
-<form class="form-horizontal span8 offset3">
+<form class="form-horizontal span8">
     <div class="control-group">
-        <label class="control-label" for="title">Title</label>
+        <div class="controls">
+            <div id="submit-alert"></div>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+            <span class="text-error">* required</span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="title">Title <span class="text-error">*</span></label>
         <div class="controls">
             <input type="text" class="input-xxlarge" id="title" placeholder="Title">
         </div>
@@ -38,4 +50,5 @@
         </div>
     </div>
 </form>
+</div>
 </div>
