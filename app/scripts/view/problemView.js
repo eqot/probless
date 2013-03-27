@@ -9,22 +9,43 @@ define([
 
     var problemView = Backbone.View.extend({
         model: null,
+        pid: null,
 
         el: $('#view'),
 
         template: _.template(ProblemViewTemplate),
 
-        initialize: function (model) {
-            this.model = model;
+        initialize: function (model, pid) {
+            _.bindAll(this, 'render');
 
-            this.render();
+            this.model = model;
+            this.pid = pid;
+
+            var data = {
+                pid: this.pid
+            };
+            $.get('problem', data, this.render);
         },
 
         destroy: function () {},
 
-        render: function () {
-            var view = this.template({problems: this.model});
+        render: function (result) {
+            console.log(result);
+
+            var view = this.template({
+                title: result.title,
+                description: result.description,
+                tags: result.tags,
+                nickname: result.nickname,
+                created_at: result.created_at
+            });
             $(this.el).html(view);
+
+            $('#title').val(result.title);
+            $('#description').val(result.description);
+            // $('#nickname').val(result.nickname);
+            $('#nickname').text('test');
+            console.log($('#nickname'));
         }
     });
 

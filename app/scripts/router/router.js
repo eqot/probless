@@ -68,7 +68,7 @@ define([
 
             this.update();
 
-            this.view = new ProblemView(this.model);
+            this.view = new ProblemView(this.model, pid);
         },
 
         update: function () {
@@ -77,7 +77,7 @@ define([
             // console.log(signin + ', ' + nickname);
 
             $('#signin-at-corner').text(signin ? 'Sign out' : 'Sign in');
-            $('#nickname').text(signin && nickname ? nickname : '');
+            $('#nickname-at-corner').text(signin && nickname ? nickname : '');
 
             if (this.view) {
                 this.view.destroy();

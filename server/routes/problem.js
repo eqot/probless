@@ -37,3 +37,21 @@ exports.submit = function (req, res, next) {
         return;
     });
 };
+
+exports.get = function (req, res, next) {
+    var pid = req.param('pid');
+    // console.log(pid);
+    if (!pid) {
+        return next();
+    }
+
+    Problem.findById(pid, function (err, result) {
+        if (err) {
+            res.send('error');
+            return;
+        }
+
+        console.log(result);
+        res.send(result);
+    });
+};

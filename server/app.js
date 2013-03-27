@@ -48,6 +48,7 @@ app.configure('test', function(){
 app.post('/user', user.signup);
 app.get('/user', user.signin);
 app.post('/problem', problem.submit);
+app.get('/problem', problem.get);
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));
