@@ -6,6 +6,7 @@ define(['backbone'], function (Backbone) {
         defaults: {
             title: '',
             description: '',
+            tags: [],
             agree: 0,
             disagree: 0
         }
