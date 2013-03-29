@@ -1,10 +1,8 @@
 
-<ul>
-    <li><%= title %></li>
-    <li><%= description %></li>
-    <li><%= tags %></li>
-    <li><%= agree %></li>
-    <li><%= disagree %></li>
-    <li><%= createdAt %></li>
-    <button class="delete">Delete</button>
-</ul>
+<div class="form-inline">
+    <input class="input-xxlarge" value="<%= title %>" disable>
+    <button class="btn agree"><i class="icon-thumbs-up" /> <%= agree %></button>
+    <button class="btn disagree"><i class="icon-thumbs-down" /> <%= disagree %></button>
+    <label><%= createdAt %></label>
+    <button class="btn delete">x</button>
+</div>
