@@ -11,3 +11,18 @@ exports.get = function (req, res) {
         }
     });
 };
+
+exports.delete = function  (req, res) {
+    console.log('delete: ' + req.params.id);
+
+    return Problem.findById(req.params.id, function (err, problem) {
+        return problem.remove(function (err) {
+            if (!err) {
+                console.log('Problem removed');
+                res.send('');
+            } else {
+                return console.log(err);
+            }
+        })
+    });
+};
