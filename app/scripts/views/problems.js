@@ -42,7 +42,7 @@ define(['jquery', 'backbone', 'views/problem'], function ($, Backbone, ProblemVi
                     problemData[el.id] = $(el).val();
                 }
             });
-            problemData.created_at = null; // dummy
+            problemData.createdAt = null; // dummy
 
             console.log(problemData);
 

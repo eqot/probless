@@ -9,7 +9,7 @@ var ProblemSchema = new mongoose.Schema({
     tags: {type: String},
     agree: {type: Number},
     disagree: {type: Number},
-    created_at: {type: Date, default: Date.now}
+    createdAt: {type: Date, default: Date.now}
 });
 
 exports.Problem = mongoose.model('Problem', ProblemSchema);
