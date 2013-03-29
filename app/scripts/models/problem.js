@@ -10,6 +10,11 @@ define(['backbone'], function (Backbone) {
             nickname: '',
             agree: 0,
             disagree: 0
+        },
+
+        parse: function (res) {
+            res.id = res._id;
+            return res;
         }
     });
 

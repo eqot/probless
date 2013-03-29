@@ -5,6 +5,7 @@ define(['models/problems', 'views/problems'], function (Problems, ProblemsView) 
     var ProblessApp = function () {
         var problems = new Problems();
         problems.fetch();
+        // console.log(problems);
 
         new ProblemsView(problems);
     };
