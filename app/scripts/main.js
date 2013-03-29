@@ -1,9 +1,19 @@
 require.config({
     paths: {
         jquery: '../components/jquery/jquery',
+        underscore: '../components/underscore/underscore-min',
+        backbone: '../components/backbone/backbone-min',
+        text: '../components/requirejs-text/text',
         bootstrap: 'vendor/bootstrap'
     },
     shim: {
+        underscore: {
+            exports: '_'
+        },
+        backbone: {
+            deps: ['underscore', 'jquery'],
+            exports: 'Backbone'
+        },
         bootstrap: {
             deps: ['jquery'],
             exports: 'jquery'
@@ -11,9 +21,8 @@ require.config({
     }
 });
 
-require(['app', 'jquery', 'bootstrap'], function (app, $) {
+require(['app', 'jquery', 'bootstrap'], function (app) {
     'use strict';
-    // use app here
-    console.log(app);
-    console.log('Running jQuery %s', $().jquery);
+
+    app();
 });

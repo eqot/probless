@@ -1,6 +1,15 @@
 /*global define */
-define([], function () {
+define(['models/problems', 'views/problems'], function (Problems, ProblemsView) {
     'use strict';
 
-    return '\'Allo \'Allo!';
+    var ProblessApp = function () {
+        var problems = new Problems([
+            {title: 'test', description: 'test_desc'},
+            {title: 'test 2', description: 'test_desc 2'},
+        ]);
+
+        new ProblemsView(problems);
+    };
+
+    return ProblessApp;
 });
