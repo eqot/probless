@@ -3,10 +3,8 @@ define(['models/problems', 'views/problems'], function (Problems, ProblemsView) 
     'use strict';
 
     var ProblessApp = function () {
-        var problems = new Problems([
-            {title: 'test', description: 'test_desc'},
-            {title: 'test 2', description: 'test_desc 2'},
-        ]);
+        var problems = new Problems();
+        problems.fetch();
 
         new ProblemsView(problems);
     };

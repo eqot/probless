@@ -3,7 +3,8 @@ define(['backbone', 'models/problem'], function (Backbone, Problem) {
     'use strict';
 
     var Problems = Backbone.Collection.extend({
-        model: Problem
+        model: Problem,
+        url: '/api/problem'
     });
 
     return Problems;
