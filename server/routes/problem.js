@@ -12,6 +12,27 @@ exports.get = function (req, res) {
     });
 };
 
+exports.add = function (req, res) {
+    var problem = new Problem({
+        title: req.body.title,
+        description: req.body.description,
+        tags: req.body.tags,
+        agree: req.body.agree,
+        disagree: req.body.disagree
+    });
+    // console.log(problem);
+
+    problem.save(function (err) {
+        if (!err) {
+            return console.log('Problem created');
+        } else {
+            return console.log(err);
+        }
+
+        res.send(problem);
+    });
+};
+
 exports.delete = function  (req, res) {
     console.log('delete: ' + req.params.id);
 
