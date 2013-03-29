@@ -3,8 +3,9 @@ define([
     'jquery',
     'backbone',
     'underscore',
+    'model/problem',
     'text!template/problemView.html'
-], function ($, Backbone, _, ProblemViewTemplate) {
+], function ($, Backbone, _, Problem, ProblemViewTemplate) {
     'use strict';
 
     var problemView = Backbone.View.extend({
@@ -24,7 +25,11 @@ define([
             var data = {
                 pid: this.pid
             };
-            $.get('problem', data, this.render);
+            // $.get('problem', data, this.render);
+
+            var problem = new Problem.Problem();
+            problem.fetch();
+            console.log(problem);
         },
 
         destroy: function () {},

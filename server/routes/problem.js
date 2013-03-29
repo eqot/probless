@@ -39,19 +39,12 @@ exports.submit = function (req, res, next) {
 };
 
 exports.get = function (req, res, next) {
-    var pid = req.param('pid');
-    // console.log(pid);
-    if (!pid) {
-        return next();
-    }
-
-    Problem.findById(pid, function (err, result) {
-        if (err) {
-            res.send('error');
-            return;
+    Problem.find(function (err, problems) {
+        if (!err) {
+            console.log(problems);
+            return res.send(problems);
+        } else {
+            return console.log(err);
         }
-
-        console.log(result);
-        res.send(result);
     });
 };

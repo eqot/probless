@@ -26,6 +26,9 @@ define(['model/problem', 'router/router'], function (Model, Router) {
         }]);
         // console.log(model);
 
+        // var model = new Model.Problems();
+        // model.fetch();
+
         new Router(model);
     };
 

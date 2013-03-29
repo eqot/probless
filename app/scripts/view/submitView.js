@@ -3,9 +3,10 @@ define([
     'jquery',
     'backbone',
     'underscore',
+    'model/problem',
     'text!template/submitView.html',
     'text!template/alert.html'
-], function ($, Backbone, _, SubmitViewTemplate, AlertTemplate) {
+], function ($, Backbone, _, Problem, SubmitViewTemplate, AlertTemplate) {
     'use strict';
 
     var submitView = Backbone.View.extend({
@@ -42,8 +43,32 @@ define([
 
             var title = $('#title').val();
             var description = $('#description').val();
-            var tags = null;
+            var tags = [];
             var nickname = $('#nickname-visible')[0].selectedIndex === 1;
+
+            var problem = new Problem.Problem();
+            problem.on('invalid', function (model, error) {
+                // console.log(error);
+
+                var alert = _.template(AlertTemplate)({message: error});
+                $('#submit-alert').empty().append(alert);
+            });
+
+            // problem.set({
+            problem.save({
+                title: title,
+                description: description,
+                tags: tags,
+                nickname: nickname
+            }, {success: this.onSaved, error: this.onError});
+            // });
+            // }, {validate: true});
+
+            // console.log(problem);
+
+            // problem.save(null, {sucecss: this.onSaved, error: this.onError});
+
+/*
 
             if (this.check(title && title !== '', '#submit-alert', 'Title is required.', '#title')) {
             } else {
@@ -57,8 +82,22 @@ define([
                 nickname: nickname ? sessionStorage.getItem('nickname') : ''
             };
             console.log(data);
+*/
 
-            $.post('problem', data, this.onSubmit);
+            // $.post('problem', data, this.onSubmit);
+        },
+
+        onSaved: function (model, response, options) {
+            console.log(response);
+            model.set('id', response);
+            console.log(model);
+            console.log(model.url());
+
+            // model.fetch();
+        },
+
+        onError: function () {
+            console.log('Error');
         },
 
         onSubmit: function (result) {
