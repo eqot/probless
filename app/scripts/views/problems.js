@@ -15,6 +15,7 @@ define(['jquery', 'backbone', 'views/problem'], function ($, Backbone, ProblemVi
             this.render();
 
             this.listenTo(this.problems, 'add', this.renderProblem);
+            this.listenTo(this.problems, 'invalid', this.invalidData);
         },
 
         render: function () {
@@ -48,7 +49,9 @@ define(['jquery', 'backbone', 'views/problem'], function ($, Backbone, ProblemVi
             this.problems.create(problemData);
         },
 
-
+        invalidData: function (model, err) {
+            console.log('Invalid: ' + err);
+        }
     });
 
     return ProbemsView;

@@ -12,6 +12,12 @@ define(['backbone'], function (Backbone) {
             disagree: 0
         },
 
+        validate: function (attrs) {
+            if (attrs.title.length === 0) {
+                return 'Title is required';
+            }
+        },
+
         parse: function (res) {
             res.id = res._id;
             return res;
