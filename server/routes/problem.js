@@ -33,6 +33,22 @@ exports.add = function (req, res) {
     });
 };
 
+exports.update = function (req, res) {
+    Problem.findById(req.params.id, function (err, problem) {
+        problem.agree = req.body.agree;
+        problem.disagree = req.body.disagree;
+
+        problem.save(function (err) {
+            if (!err) {
+                console.log('Problem updated');
+                res.send('');
+            } else {
+                return console.log(err);
+            }
+        });
+    });
+};
+
 exports.delete = function  (req, res) {
     console.log('delete: ' + req.params.id);
 

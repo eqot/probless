@@ -26,6 +26,7 @@ app.configure('development', function(){
 
 app.get('/api/problem', problem.get);
 app.post('/api/problem', problem.add);
+app.put('/api/problem/:id', problem.update);
 app.delete('/api/problem/:id', problem.delete);
 
 http.createServer(app).listen(app.get('port'), function(){
