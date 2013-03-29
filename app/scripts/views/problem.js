@@ -8,10 +8,19 @@ define(['backbone', 'underscore', 'text!templates/problem.html'], function (Back
         className: 'problemContainer',
         template: _.template(ProblemTemplate),
 
+        events: {
+            'click .delete': 'delete'
+        },
+
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
-            console.log(this.$el);
             return this;
+        },
+
+        delete: function () {
+            this.model.destroy();
+
+            this.remove();
         }
 
     });

@@ -6,9 +6,15 @@ define(['jquery', 'backbone', 'views/problem'], function ($, Backbone, ProblemVi
 
         el: $('#view'),
 
+        events: {
+            'click #submit': 'submitProblem'
+        },
+
         initialize: function (problems) {
             this.problems = problems;
             this.render();
+
+            this.listenTo(this.problems, 'add', this.renderProblem);
         },
 
         render: function () {
@@ -18,13 +24,29 @@ define(['jquery', 'backbone', 'views/problem'], function ($, Backbone, ProblemVi
         },
 
         renderProblem: function (problem) {
-            console.log(problem);
+            // console.log(problem);
             var problemView = new ProblemView({
                 model: problem
             });
-            console.log(problemView);
+            // console.log(problemView);
             $(this.el).append(problemView.render().el);
-        }
+        },
+
+        submitProblem: function (event) {
+            event.preventDefault();
+
+            var problemData = {};
+            $('#submitProblem div').children('input').each(function (id, el) {
+                if ($(el).val() !== '') {
+                    problemData[el.id] = $(el).val();
+                }
+            });
+
+            console.log(problemData);
+
+            this.problems.add(problemData);
+        },
+
 
     });
 
