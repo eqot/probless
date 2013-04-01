@@ -24,12 +24,10 @@ exports.add = function (req, res) {
 
     problem.save(function (err) {
         if (!err) {
-            return console.log('Problem created');
+            res.send(problem.toJSON());
         } else {
             return console.log(err);
         }
-
-        res.send(problem);
     });
 };
 
