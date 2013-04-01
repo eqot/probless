@@ -37,7 +37,7 @@ define(['jquery', 'backbone', 'views/problem'], function ($, Backbone, ProblemVi
             event.preventDefault();
 
             var problemData = {};
-            $('#submitProblem div').children('input').each(function (id, el) {
+            $('#submitProblem div').children('input').each(function (i, el) {
                 if ($(el).val() !== '') {
                     problemData[el.id] = $(el).val();
                 }
