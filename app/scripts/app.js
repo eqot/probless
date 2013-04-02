@@ -1,9 +1,9 @@
 /*global define */
-define(['views/problems'], function (ProblemsView) {
+define(['routers/router'], function (Router) {
     'use strict';
 
     var ProblessApp = function () {
-        new ProblemsView();
+        new Router();
     };
 
     return ProblessApp;
