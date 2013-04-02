@@ -4,3 +4,20 @@ $iconSpritePath: "../images/glyphicons-halflings.png";
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'sass-bootstrap/lib/responsive';
 
+body {
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+
+.hero-unit  {
+    padding: 25px;
+}
+
+#signup-container {
+    margin-top: 55px;
+    margin-left: 60px;
+}
+
+#signup {
+    margin-left: 0;
+}
