@@ -4,7 +4,7 @@ define(['models/problems', 'views/problems'], function (Problems, ProblemsView) 
 
     var ProblessApp = function () {
         var problems = new Problems();
-        problems.fetch();
+        problems.fetch({reset: true});
         // console.log(problems);
 
         new ProblemsView(problems);

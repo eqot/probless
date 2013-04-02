@@ -15,6 +15,7 @@ define(['jquery', 'backbone', 'views/problem'], function ($, Backbone, ProblemVi
             this.render();
 
             this.listenTo(this.problems, 'add', this.renderProblem);
+            this.listenTo(this.problems, 'reset', this.render);
             this.listenTo(this.problems, 'invalid', this.invalidData);
         },
 
