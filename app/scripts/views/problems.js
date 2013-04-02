@@ -1,5 +1,10 @@
 /*global define */
-define(['jquery', 'backbone', 'views/problem'], function ($, Backbone, ProblemView) {
+define([
+    'jquery',
+    'backbone',
+    'models/problems',
+    'views/problem'
+], function ($, Backbone, Problems, ProblemView) {
     'use strict';
 
     var ProbemsView = Backbone.View.extend({
@@ -11,7 +16,10 @@ define(['jquery', 'backbone', 'views/problem'], function ($, Backbone, ProblemVi
         },
 
         initialize: function (problems) {
-            this.problems = problems;
+            this.problems = new Problems();
+            this.problems.fetch({reset: true});
+            // console.log(this.problems);
+
             this.render();
 
             this.listenTo(this.problems, 'add', this.renderProblem);

@@ -1,13 +1,9 @@
 /*global define */
-define(['models/problems', 'views/problems'], function (Problems, ProblemsView) {
+define(['views/problems'], function (ProblemsView) {
     'use strict';
 
     var ProblessApp = function () {
-        var problems = new Problems();
-        problems.fetch({reset: true});
-        // console.log(problems);
-
-        new ProblemsView(problems);
+        new ProblemsView();
     };
 
     return ProblessApp;
