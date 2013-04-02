@@ -24,7 +24,7 @@ exports.add = function (req, res) {
 
     problem.save(function (err) {
         if (!err) {
-            res.send(problem.toJSON());
+            res.send(problem);
         } else {
             return console.log(err);
         }
