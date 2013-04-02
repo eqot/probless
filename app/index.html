@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title></title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- build:js scripts/vendor/modernizr.js -->
@@ -16,23 +16,40 @@
         <!-- endbuild -->
     </head>
     <body>
-        <header>
-            <h1>probless</h1>
-        </header>
+        <div class="container">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="brand" href="#"><strong>probless</strong></a>
 
-        <div id="view">
-            <form id="submitProblem" action="#">
-                <div>
-                    <label for="title">Title: </label><input id="title" type="text" autofocus />
-                    <label for="description">Description: </label><input id="description" type="text" />
-                    <br>
-                    <button id="submit" class="btn">Submit</button>
+                        <div class="nav-collapse cllapse">
+                            <ul class="nav">
+                                <li class="active"><a href="#">Home</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#problems">Problems</a></li>
+                                <li><a href="#solutions">Solutions</a></li>
+                            </ul>
+                        </div>
+
+                        <form class="navbar-form pull-right">
+                            <input class="span2" type="text" placeholder="Nickname">
+                            <input class="span2" type="password" placeholder="Password">
+                            <button type="submit" class="btn">Sign in</button>
+                        </form>
+                    </div>
                 </div>
-            </form>
-        </div>
+            </div>
 
-        <footer>
-        </footer>
+            <div id="view" class="container">
+            </div>
+
+            <br>
+            <hr>
+
+            <footer>
+                <p>&copy; Ikuo Terado 2013</p>
+            </footer>
+        </div>
 
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>

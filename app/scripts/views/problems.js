@@ -2,20 +2,24 @@
 define([
     'jquery',
     'backbone',
+    'underscore',
     'models/problems',
-    'views/problem'
-], function ($, Backbone, Problems, ProblemView) {
+    'views/problem',
+    'text!templates/problems.html'
+], function ($, Backbone, _, Problems, ProblemView, ProblemsViewTemplate) {
     'use strict';
 
     var ProbemsView = Backbone.View.extend({
 
         el: $('#view'),
 
+        template: _.template(ProblemsViewTemplate),
+
         events: {
             'click #submit': 'submitProblem'
         },
 
-        initialize: function (problems) {
+        initialize: function () {
             this.problems = new Problems();
             this.problems.fetch({reset: true});
             // console.log(this.problems);
@@ -32,6 +36,8 @@ define([
         },
 
         render: function () {
+            this.$el.html(this.template());
+
             this.problems.each(function (problem) {
                 this.renderProblem(problem);
             }, this);

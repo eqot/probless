@@ -10,7 +10,7 @@ define([
 
         routes: {
             '': 'topView',
-            'problem': 'problemView'
+            'problems': 'problemsView'
         },
 
         initialize: function () {
@@ -24,8 +24,8 @@ define([
             new TopView();
         },
 
-        problemView: function () {
-            console.log("problemView");
+        problemsView: function () {
+            // console.log('problemsView');
 
             new ProblemsView();
         }
