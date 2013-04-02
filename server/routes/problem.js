@@ -39,7 +39,7 @@ exports.update = function (req, res) {
         problem.save(function (err) {
             if (!err) {
                 console.log('Problem updated');
-                res.send('');
+                res.send(problem);
             } else {
                 return console.log(err);
             }
