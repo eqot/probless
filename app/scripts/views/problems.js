@@ -19,6 +19,10 @@ define(['jquery', 'backbone', 'views/problem'], function ($, Backbone, ProblemVi
             this.listenTo(this.problems, 'invalid', this.invalidData);
         },
 
+        close: function () {
+            this.stopListening();
+        },
+
         render: function () {
             this.problems.each(function (problem) {
                 this.renderProblem(problem);
