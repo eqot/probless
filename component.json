@@ -8,7 +8,8 @@
     "jquery": "~1.9.1",
     "backbone": "~1.0.0",
     "underscore": "~1.4.4",
-    "requirejs-text": "~2.0.5"
+    "requirejs-text": "~2.0.5",
+    "jquery-dateFormat": "https://github.com/phstc/jquery-dateFormat.git"
   },
   "devDependencies": {}
 }

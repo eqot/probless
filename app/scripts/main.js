@@ -1,6 +1,7 @@
 require.config({
     paths: {
         jquery: '../components/jquery/jquery',
+        jqueryDateFormat: '../components/jquery-dateFormat/jquery.dateFormat-1.0',
         underscore: '../components/underscore/underscore-min',
         backbone: '../components/backbone/backbone-min',
         text: '../components/requirejs-text/text',

@@ -1,5 +1,11 @@
 /*global define */
-define(['backbone', 'underscore', 'text!templates/problem.html'], function (Backbone, _, ProblemTemplate) {
+define([
+    'jquery',
+    'backbone',
+    'underscore',
+    'text!templates/problem.html',
+    'jqueryDateFormat'
+], function ($, Backbone, _, ProblemTemplate) {
     'use strict';
 
     var ProblemView = Backbone.View.extend({
