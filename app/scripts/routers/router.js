@@ -2,14 +2,16 @@
 define([
     'backbone',
     'views/top',
+    'views/about',
     'views/problems'
-], function (Backbone, TopView, ProblemsView) {
+], function (Backbone, TopView, AboutView, ProblemsView) {
     'use strict';
 
     var Router = Backbone.Router.extend({
 
         routes: {
             '': 'topView',
+            'about': 'aboutView',
             'problems': 'problemsView'
         },
 
@@ -22,6 +24,12 @@ define([
             console.log('topView');
 
             new TopView();
+        },
+
+        aboutView: function () {
+            console.log('aboutView');
+
+            new AboutView();
         },
 
         problemsView: function () {
