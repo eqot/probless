@@ -1,7 +1,7 @@
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/probless_dev')
+mongoose.createConnection('mongodb://localhost/probless_dev');
 
 var ProblemSchema = new mongoose.Schema({
     title: {type: String, required: true},

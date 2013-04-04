@@ -3,13 +3,16 @@ define(['backbone'], function (Backbone) {
     'use strict';
 
     var User = Backbone.Model.extend({
+
+        url: '/api/user',
+
         defaults: {
             nickname: '',
             password: '',
             password2: ''
         },
 
-        varidate: function (attrs) {
+        validate: function (attrs) {
             if (attrs.nickname.length === 0) {
                 return 'Nickname is required';
             } else if (attrs.password.length === 0) {

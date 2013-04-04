@@ -1,5 +1,6 @@
 
 var express = require('express'),
+    user = require('./routes/user'),
     problem = require('./routes/problem'),
     http = require('http'),
     path = require('path');
@@ -28,6 +29,8 @@ app.get('/api/problem', problem.get);
 app.post('/api/problem', problem.add);
 app.put('/api/problem/:id', problem.update);
 app.delete('/api/problem/:id', problem.delete);
+
+app.post('/api/user', user.create);
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));
