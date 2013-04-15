@@ -40,3 +40,7 @@ exports.signin = function (req, res, next) {
         res.send(user);
     });
 };
+
+exports.signout = function (req, res, next) {
+    req.session.destroy();
+};

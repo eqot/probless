@@ -14,6 +14,8 @@ define([
 
         template: _.template(TopViewTemplate),
 
+        user: null,
+
         events: {
             'click #signup': 'signup',
             'click #signin': 'signin'
@@ -34,7 +36,7 @@ define([
 
             event.preventDefault();
 
-            var user = new User({
+            this.user = new User({
                 nickname: $('#nickname').val(),
                 password: $('#password').val(),
                 password2: $('#password2').val()
@@ -43,31 +45,57 @@ define([
 
             this.listenTo(user, 'invalid', this.invalidData);
 
-            user.save();
+            this.user.save();
         },
 
         signin: function (event) {
-            // console.log('sign in');
-
             event.preventDefault();
 
-            var user = new User({
-                nickname: $('#in-nickname').val(),
-                password: $('#in-password').val(),
-                password2: $('#in-password').val(),
-                id: 'dummy'
-            });
-            // console.log(user);
+            if (!this.user) {
+                console.log('sign in');
 
-            // this.listenTo(user, 'invalid', this.invalidData);
+                this.user = new User({
+                    nickname: $('#in-nickname').val(),
+                    password: $('#in-password').val(),
+                    password2: $('#in-password').val(),
+                    id: 'dummy'
+                });
+                // console.log(user);
 
-            user.save();
+                // this.listenTo(user, 'invalid', this.invalidData);
+
+                this.user.save({}, {
+                    success: function (model, res) {
+                    // console.log(model);
+                        console.log(res);
+
+                        $('.signedout')
+                            .removeClass('signedout')
+                            .addClass('signedin');
+                        $('#in-nickname').addClass('uneditable-input').attr('disabled', true);
+                        $('#signin').text('Sign out');
+                    },
+                    error: function (model, xhr) {
+                        console.log('error');
+                    }
+                });
+            } else {
+                console.log('sign out');
+
+                this.user.destroy();
+                this.user = null;
+
+                $('.signedin')
+                    .removeClass('signedin')
+                    .addClass('signedout');
+                $('#in-nickname').removeClass('uneditable-input').removeAttr('disabled');
+                $('#signin').text('Sign in');
+            }
         },
 
         invalidData: function (model, err) {
             console.log('Invalid: ' + err);
         }
-
     });
 
     return TopView;

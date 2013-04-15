@@ -19,6 +19,10 @@ app.configure(function(){
     app.use(express.session());
     app.use(function (req, res, next) {
         console.log(req.session.user);
+        if (req.session.user) {
+            res.cookie('nickname', req.session.user.nickname, {expires: new Date(Date.now() + 900000)});
+        }
+
         next();
     });
     app.use(app.router);
@@ -36,6 +40,7 @@ app.delete('/api/problem/:id', problem.delete);
 
 app.post('/api/user', user.signup);
 app.put('/api/user/:id', user.signin);
+app.delete('/api/user/:id', user.signout);
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));
