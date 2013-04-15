@@ -12,6 +12,7 @@ exports.signup = function (req, res, next) {
     user.save(function (err) {
         if (!err) {
             console.log('Sign up');
+            req.session.user = user;
         } else {
             console.log(err);
         }
@@ -30,6 +31,7 @@ exports.signin = function (req, res, next) {
     User.findOne(userData, function (err, user) {
         if (!err && user) {
             console.log('Sign in');
+            req.session.user = user;
         } else {
             console.log(err);
         }
