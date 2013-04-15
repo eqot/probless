@@ -30,7 +30,7 @@ app.post('/api/problem', problem.add);
 app.put('/api/problem/:id', problem.update);
 app.delete('/api/problem/:id', problem.delete);
 
-app.post('/api/user', user.create);
+app.post('/api/user', user.signup);
 app.put('/api/user/:id', user.signin);
 
 http.createServer(app).listen(app.get('port'), function(){

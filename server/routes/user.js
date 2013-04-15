@@ -2,19 +2,21 @@
 var UserModel = require('../models/user'),
     User = UserModel.User;
 
-exports.create = function (req, res, next) {
+exports.signup = function (req, res, next) {
     var user = new User({
         nickname: req.body.nickname,
         password: req.body.password
     });
-    console.log(user);
+    // console.log(user);
 
     user.save(function (err) {
         if (!err) {
-            res.send(user);
+            console.log('Sign up');
         } else {
-            return console.log(err);
+            console.log(err);
         }
+
+        res.send(user);
     });
 };
 
@@ -23,7 +25,7 @@ exports.signin = function (req, res, next) {
         nickname: req.body.nickname,
         password: req.body.password
     };
-    console.log(userData);
+    // console.log(userData);
 
     User.findOne(userData, function (err, user) {
         if (!err && user) {
@@ -32,7 +34,7 @@ exports.signin = function (req, res, next) {
             console.log(err);
         }
 
-        console.log(user);
+        // console.log(user);
         res.send(user);
     });
 };
