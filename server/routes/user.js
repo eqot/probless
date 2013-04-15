@@ -43,4 +43,5 @@ exports.signin = function (req, res, next) {
 
 exports.signout = function (req, res, next) {
     req.session.destroy();
+    res.send('ok');
 };
