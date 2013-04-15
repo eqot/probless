@@ -31,6 +31,7 @@ app.put('/api/problem/:id', problem.update);
 app.delete('/api/problem/:id', problem.delete);
 
 app.post('/api/user', user.create);
+app.put('/api/user/:id', user.signin);
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));

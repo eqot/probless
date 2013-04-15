@@ -54,7 +54,8 @@ define([
             var user = new User({
                 nickname: $('#in-nickname').val(),
                 password: $('#in-password').val(),
-                password2: $('#in-password').val()
+                password2: $('#in-password').val(),
+                id: 'dummy'
             });
             // console.log(user);
 
