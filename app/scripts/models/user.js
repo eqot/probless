@@ -8,8 +8,7 @@ define(['backbone'], function (Backbone) {
 
         defaults: {
             nickname: '',
-            password: '',
-            password2: ''
+            password: ''
         },
 
         validate: function (attrs) {
@@ -17,11 +16,17 @@ define(['backbone'], function (Backbone) {
                 return 'Nickname is required';
             } else if (attrs.password.length === 0) {
                 return 'Password is required';
-            } else if (attrs.password2.length === 0) {
+            }
+        },
+
+        validatePassword: function (password2) {
+            if (password2.length === 0) {
                 return 'Password2 is required';
-            } else if (attrs.password !== attrs.password2) {
+            } else if (this.get('password') !== password2) {
                 return 'Passwords are different';
             }
+
+            return false;
         },
 
         parse: function (res) {

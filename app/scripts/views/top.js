@@ -38,14 +38,18 @@ define([
 
             this.user = new User({
                 nickname: $('#nickname').val(),
-                password: $('#password').val(),
-                password2: $('#password2').val()
+                password: $('#password').val()
             });
-            // console.log(user);
+            // console.log(this.user);
 
-            this.listenTo(user, 'invalid', this.invalidData);
+            this.listenTo(this.user, 'invalid', this.invalidData);
 
-            this.user.save();
+            var result = this.user.validatePassword($('#password2').val());
+            if (!result) {
+                this.user.save();
+            } else {
+                console.log(result);
+            }
         },
 
         signin: function (event) {
@@ -57,8 +61,7 @@ define([
                 this.user = new User({
                     nickname: $('#in-nickname').val(),
                     password: $('#in-password').val(),
-                    password2: $('#in-password').val(),
-                    id: 'dummy'
+                    id: '*'
                 });
                 // console.log(user);
 
