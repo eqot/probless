@@ -18,9 +18,11 @@ app.configure(function(){
     app.use(express.cookieParser('your secret here'));
     app.use(express.session());
     app.use(function (req, res, next) {
-        console.log(req.session.user);
+        // console.log(req.session.user);
         if (req.session.user) {
             res.cookie('nickname', req.session.user.nickname, {expires: new Date(Date.now() + 900000)});
+        } else {
+            res.clearCookie('nickname');
         }
 
         next();

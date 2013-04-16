@@ -1,6 +1,7 @@
 require.config({
     paths: {
         jquery: '../components/jquery/jquery',
+        jqueryCookie: '../components/jquery.cookie/jquery.cookie',
         jqueryDateFormat: '../components/jquery-dateFormat/jquery.dateFormat-1.0',
         underscore: '../components/underscore/underscore-min',
         backbone: '../components/backbone/backbone-min',

@@ -23,9 +23,11 @@ exports.signup = function (req, res, next) {
 
 exports.signin = function (req, res, next) {
     var userData = {
-        nickname: req.body.nickname,
-        password: req.body.password
+        nickname: req.body.nickname
     };
+    if (!(req.session.user && (req.session.user.nickname === req.body.nickname))) {
+        userData.password = req.body.password;
+    }
     // console.log(userData);
 
     User.findOne(userData, function (err, user) {

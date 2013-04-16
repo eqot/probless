@@ -17,8 +17,7 @@ define([
         user: null,
 
         events: {
-            'click #signup': 'signup',
-            'click #signin': 'signin'
+            'click #signup': 'signup'
         },
 
         initialize: function () {
@@ -49,50 +48,6 @@ define([
                 this.user.save();
             } else {
                 console.log(result);
-            }
-        },
-
-        signin: function (event) {
-            event.preventDefault();
-
-            if (!this.user) {
-                console.log('sign in');
-
-                this.user = new User({
-                    nickname: $('#in-nickname').val(),
-                    password: $('#in-password').val(),
-                    id: '*'
-                });
-                // console.log(user);
-
-                // this.listenTo(user, 'invalid', this.invalidData);
-
-                this.user.save({}, {
-                    success: function (model, res) {
-                    // console.log(model);
-                        console.log(res);
-
-                        $('.signedout')
-                            .removeClass('signedout')
-                            .addClass('signedin');
-                        $('#in-nickname').addClass('uneditable-input').attr('disabled', true);
-                        $('#signin').text('Sign out');
-                    },
-                    error: function (model, xhr) {
-                        console.log('error');
-                    }
-                });
-            } else {
-                console.log('sign out');
-
-                this.user.destroy();
-                this.user = null;
-
-                $('.signedin')
-                    .removeClass('signedin')
-                    .addClass('signedout');
-                $('#in-nickname').removeClass('uneditable-input').removeAttr('disabled');
-                $('#signin').text('Sign in');
             }
         },
 
