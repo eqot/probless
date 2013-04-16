@@ -11,6 +11,8 @@ define([
     'use strict';
 
     var Router = Backbone.Router.extend({
+        view: null,
+
         user: null,
 
         routes: {
@@ -37,11 +39,15 @@ define([
         topView: function () {
             console.log('topView');
 
+            this.removeOldView();
+
             new TopView();
         },
 
         aboutView: function () {
             console.log('aboutView');
+
+            this.removeOldView();
 
             new AboutView();
         },
@@ -49,7 +55,18 @@ define([
         problemsView: function () {
             // console.log('problemsView');
 
+            this.removeOldView();
+
             new ProblemsView();
+        },
+
+        removeOldView: function () {
+            // console.log('removeOldView');
+
+            if (this.view && this.view.destroy !== undefined) {
+                this.view.destroy();
+                this.view = null;
+            }
         },
 
         sign: function () {
