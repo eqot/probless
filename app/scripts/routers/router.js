@@ -2,12 +2,13 @@
 define([
     'jquery',
     'backbone',
+    'underscore',
     'models/user',
     'views/top',
     'views/about',
     'views/problems',
     'jqueryCookie'
-], function ($, Backbone, User, TopView, AboutView, ProblemsView) {
+], function ($, Backbone, _, User, TopView, AboutView, ProblemsView) {
     'use strict';
 
     var Router = Backbone.Router.extend({
