@@ -12,17 +12,15 @@ define([
 
         el: $('#view'),
 
-        template: _.template(TopViewTemplate),
-
-        user: null,
-
         events: {
             'click #signup': 'signup'
         },
 
-        initialize: function () {
-            $('#signin').click(this.signin);
+        template: _.template(TopViewTemplate),
 
+        user: null,
+
+        initialize: function () {
             this.render();
         },
 
