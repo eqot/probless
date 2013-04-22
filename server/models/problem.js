@@ -7,6 +7,7 @@ var ProblemSchema = new mongoose.Schema({
     title: {type: String, required: true},
     description: {type: String},
     tags: {type: String},
+    visible: {type: Boolean},
     agree: {type: Number},
     disagree: {type: Number},
     createdAt: {type: Date, default: Date.now}

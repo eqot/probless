@@ -55,13 +55,11 @@ define([
         submitProblem: function (event) {
             event.preventDefault();
 
-            var problemData = {};
-            $('#submitProblem div').children('input').each(function (i, el) {
-                if ($(el).val() !== '') {
-                    problemData[el.id] = $(el).val();
-                }
-            });
-            problemData.createdAt = null; // dummy
+            var problemData = {
+                title: $('#title').val(),
+                description: $('#description').val(),
+                visible: $('#visible')[0].checked
+            };
 
             console.log(problemData);
 

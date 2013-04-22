@@ -17,6 +17,7 @@ exports.add = function (req, res) {
         title: req.body.title,
         description: req.body.description,
         tags: req.body.tags,
+        visible: req.body.visible,
         agree: req.body.agree,
         disagree: req.body.disagree
     });

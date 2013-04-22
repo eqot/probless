@@ -8,6 +8,7 @@ define(['backbone'], function (Backbone) {
             description: '',
             tags: [],
             nickname: '',
+            visible: false,
             agree: 0,
             disagree: 0
         },
