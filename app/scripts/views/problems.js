@@ -65,7 +65,7 @@ define([
 
             console.log(problemData);
 
-            this.problems.create(problemData);
+            this.problems.create(problemData, {wait: true});
         },
 
         invalidData: function (model, err) {
