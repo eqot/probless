@@ -32,8 +32,10 @@ define([
             this.listenTo(this.problems, 'invalid', this.invalidData);
         },
 
-        close: function () {
+        destroy: function () {
             this.stopListening();
+
+            $(this.el).empty();
         },
 
         render: function () {

@@ -17,6 +17,12 @@ define([
             this.render();
         },
 
+        destroy: function () {
+            this.stopListening();
+
+            $(this.el).empty();
+        },
+
         render: function () {
             this.$el.html(this.template());
         }

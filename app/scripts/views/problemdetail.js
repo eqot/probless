@@ -11,7 +11,13 @@ define([
 
         initialize: function () {
             console.log('ProblemDetailView');
-        }
+        },
+
+        destroy: function () {
+            this.stopListening();
+
+            $(this.el).empty();
+        },
     });
 
     return ProblemDetailView;

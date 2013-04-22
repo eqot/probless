@@ -44,7 +44,7 @@ define([
 
             this.removeOldView();
 
-            new TopView();
+            this.view = new TopView();
         },
 
         aboutView: function () {
@@ -52,7 +52,7 @@ define([
 
             this.removeOldView();
 
-            new AboutView();
+            this.view = new AboutView();
         },
 
         problemsView: function () {
@@ -60,7 +60,7 @@ define([
 
             this.removeOldView();
 
-            new ProblemsView();
+            this.view = new ProblemsView();
         },
 
         problemDetailView: function () {
@@ -68,7 +68,7 @@ define([
 
             this.removeOldView();
 
-            new ProblemDetailView();
+            this.view = new ProblemDetailView();
         },
 
         removeOldView: function () {
