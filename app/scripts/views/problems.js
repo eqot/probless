@@ -58,6 +58,7 @@ define([
             var problemData = {
                 title: $('#title').val(),
                 description: $('#description').val(),
+                nickname: $('#in-nickname').val(),
                 visible: $('#visible')[0].checked
             };
 
