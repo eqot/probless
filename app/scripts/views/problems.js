@@ -16,7 +16,8 @@ define([
         template: _.template(ProblemsViewTemplate),
 
         events: {
-            'click #submit': 'submitProblem'
+            'click #submit': 'submitProblem',
+            'click .problem-line': 'showProblem'
         },
 
         initialize: function () {
@@ -69,6 +70,15 @@ define([
 
         invalidData: function (model, err) {
             console.log('Invalid: ' + err);
+        },
+
+        showProblem: function (event) {
+            // console.log('showProblem');
+
+            var id = $(event.currentTarget).data('id');
+            // console.log(id);
+
+            Backbone.history.navigate('problems/' + id, true);
         }
     });
 

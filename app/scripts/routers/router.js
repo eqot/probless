@@ -7,8 +7,9 @@ define([
     'views/top',
     'views/about',
     'views/problems',
+    'views/problemdetail',
     'jqueryCookie'
-], function ($, Backbone, _, User, TopView, AboutView, ProblemsView) {
+], function ($, Backbone, _, User, TopView, AboutView, ProblemsView, ProblemDetailView) {
     'use strict';
 
     var Router = Backbone.Router.extend({
@@ -19,7 +20,8 @@ define([
         routes: {
             '': 'topView',
             'about': 'aboutView',
-            'problems': 'problemsView'
+            'problems': 'problemsView',
+            'problems/:id': 'problemDetailView'
         },
 
         initialize: function () {
@@ -59,6 +61,14 @@ define([
             this.removeOldView();
 
             new ProblemsView();
+        },
+
+        problemDetailView: function () {
+            // console.log('problemDetailView');
+
+            this.removeOldView();
+
+            new ProblemDetailView();
         },
 
         removeOldView: function () {
