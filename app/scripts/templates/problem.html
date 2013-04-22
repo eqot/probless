@@ -1,7 +1,15 @@
 
 <div class="form-inline">
     <span class="input-xxlarge uneditable-input"><%= title %></span>
-    <span class="input uneditable-input"><%= nickname %></span>
+
+    <span class="input uneditable-input">
+        <% if (visible) {%>
+            <%= nickname %>
+        <% } else {%>
+            invisible
+        <% } %>
+    </span>
+
     <button class="btn agree"><i class="icon-thumbs-up" /> <%= agree %></button>
     <label><%= $.format.date(new Date(createdAt), 'yyyy/MM/dd HH:mm') %></label>
     <button class="btn delete">x</button>
