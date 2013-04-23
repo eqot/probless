@@ -17,7 +17,7 @@ Motivations
 
 There are two reasons that this web app was developed.
 
-1. Create ideas based on problems
+#### 1. Create ideas based on problems
 
 We as techies sometimes or often create new ideas which are based on technologies. However, such ideas from technologies as seeds do not always solve big and/or ciritcal problems from other people's needs, because the ideas are created just for utilizing the technologies, not solving problems. This might be one of root causes that noboday want such ideas.
 
@@ -25,7 +25,7 @@ So, we probably need to start creating ideas from problems which someone really 
 
 Our life is not so long. We have to focus on high priority problems rather than small ones.
 
-2. Find other people who want to solve problems together
+#### 2. Find other people who want to solve problems together
 
 This probless also show solutions for problems, and help to find other people who really want to solve problems together. Or, anyone can propose better solution than other ones.
 
